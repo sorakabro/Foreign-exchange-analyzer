@@ -106,12 +106,20 @@ foreach($rateCompare as $country=>$currency) {
 
     // Calculate the percentage between the two dates
     $percentage = (($date2 - $date1) / $date1) * 100;
-    $percentageDecimals = round($percentage, 3);
+    $percentageDecimals[] = round($percentage, 3);
+    $countryArray[] = $country;
+    $countryPercentageData = array_combine($countryArray, $percentageDecimals);
+}
+
+// Sort Descending
+arsort($countryPercentageData);
+
+foreach($countryPercentageData as $country=>$currency) {
     echo '<pre>';
     echo '</pre>';
     echo '<tr>';
     echo '<td>' . $country . '</td>';
-    echo '<td>' . $percentageDecimals . '%</td>';
+    echo '<td>' . $currency . '%</td>';
     echo '</tr>';
 }
 echo ' 
